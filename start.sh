@@ -7,8 +7,8 @@ MY_CHROOT=/mnt
 LS=$(ls -a /mnt | grep debian-utils)
 
 if [ "$LS" = "debian-utils" ];
-    then
-        chmod -x /mnt/debian-utils
+	then
+        	chmod -x /mnt/debian-utils
 	else
 		sudo chmod +x -R $DIR/*
 		sudo mkdir -p /mnt/debian-utils
