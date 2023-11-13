@@ -75,6 +75,15 @@ Setting root password ( tekan Enter untuk lanjut )
                             post-install
                             ;;
                         esac
+                        read -p "
+
+Setting Password berhasil ...
+
+" ret
+                            case $ret in
+                                *) post-install
+                                ;;
+                            esac
                         ;;
 # # Setting Bahasa
                         2) FN_LOCALE=$(ls -a /usr/sbin | grep locale-gen)
@@ -106,6 +115,7 @@ Setting Bahasa berhasil ...
                                 sudo dpkg-reconfigure tzdata
                             else
                                 sudo apt install tzdata -y
+                                sudo dpkg-reconfigure tzdata
                         fi ;
 
                         read -p "
@@ -125,7 +135,7 @@ Install Kernel dan Packages Pendukung ( tekan Enter untuk lanjut )
 
 " krn
                             case $krn in
-                                *) sudo apt install linux-image-amd64 linux-headers-amd64 ntfs-3g network-manager vim -y ;
+                                *) sudo apt install linux-image-amd64 linux-headers-amd64 ntfs-3g network-manager -y ;
                                 read -p "
 
 Kernel Berhasil Diinstall ...
@@ -228,7 +238,7 @@ Masukkan pilihan anda : " pilihan
 
 Lanjut install Debian $pilihan ? [Y/n] : " yn
                 case $yn in
-                    [Yy]*) sudo debootstrap --arch amd64 $pilihan $MY_CHROOT http://kartolo.sby.datautama.net.id/debian ;
+                    [Yy]*) sudo debootstrap --arch amd64 --include=sudo,vim,locales,tzdata --exclude=nano $pilihan $MY_CHROOT http://kartolo.sby.datautama.net.id/debian ;
                         read -p "
 
 Debian $pilihan sudah berhasil di install ...
