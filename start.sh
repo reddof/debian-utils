@@ -333,11 +333,7 @@ MAIN MENU
 
 1. Install Debootstrap.
 2. Install System.
-<<<<<<< HEAD
 3. Membuat File fstab
-=======
-3. Membuat file fstab.
->>>>>>> 473619bd06d62a9639f89a367352838b20f3f0f4
 4. Mount Semua yang Dibutuhkan.
 5. Post Install.
 q. Keluar
@@ -349,17 +345,10 @@ Masukkan pilihan anda : " pilihan
         ;;
         2) debian-install
         ;;
-<<<<<<< HEAD
         3) fstabgen
         ;;
         4) mount-everything
         ;;
-=======
-	3) genfstab
-	;;
-        4) mount-everything
-        ;;
->>>>>>> 473619bd06d62a9639f89a367352838b20f3f0f4
         5) post-install
         ;;
         [Qq]*) clear
