@@ -9,7 +9,6 @@ LS=$(ls -a /mnt | grep debian-utils)
 if [ "$LS" = "debian-utils" ];
 	then
         	chmod -x /mnt/debian-utils
->>>>>>> 473619bd06d62a9639f89a367352838b20f3f0f4
 	else
 		sudo chmod +x -R $DIR/*
 		sudo mkdir -p /mnt/debian-utils
