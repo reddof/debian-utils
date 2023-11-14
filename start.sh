@@ -219,6 +219,30 @@ Kemudian setelah masuk chroot lanjut peoses 4) ...
 
 }
 
+# Membuat file fstab
+genfstab () { read -p "
+
+Apakah anda ingin membuat file fstab ?
+
+[Y/n] : " yn
+	case $yn in
+		[Yy]*) genfstab -U $MY_CHROOT > $DIR/fstab
+		sudo mv $DIR/fstab $MY_CHROOT/etc
+		read -p "
+
+File fstab sudah berhasil dibuat (tekan enter untuk lanjut) ...
+
+" ret
+		case $ret in
+			*) return
+			;;
+		esac
+		;;
+		[Nn]*) return
+		;,
+	esac
+}
+
 # Install base debian
 debian-install () { read -p "
 
@@ -297,8 +321,9 @@ MAIN MENU
 
 1. Install Debootstrap.
 2. Install System.
-3. Mount Semua yang Dibutuhkan.
-4. Post Install.
+3. Membuat file fstab.
+4. Mount Semua yang Dibutuhkan.
+5. Post Install.
 q. Keluar
 
 Masukkan pilihan anda : " pilihan
@@ -308,9 +333,11 @@ Masukkan pilihan anda : " pilihan
         ;;
         2) debian-install
         ;;
-        3) mount-everything
+	3) genfstab
+	;;
+        4) mount-everything
         ;;
-        4) post-install
+        5) post-install
         ;;
         [Qq]*) clear
             exit
