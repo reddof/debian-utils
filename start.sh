@@ -7,8 +7,13 @@ MY_CHROOT=/mnt
 LS=$(ls -a /mnt | grep debian-utils)
 
 if [ "$LS" = "debian-utils" ];
+<<<<<<< HEAD
     then
         sudo chmod -x /mnt/debian-utils
+=======
+	then
+        	chmod -x /mnt/debian-utils
+>>>>>>> 473619bd06d62a9639f89a367352838b20f3f0f4
 	else
 		sudo chmod +x -R $DIR/*
 		sudo mkdir -p /mnt/debian-utils
@@ -220,6 +225,7 @@ Kemudian setelah masuk chroot lanjut peoses 4) ...
 }
 
 # Membuat file fstab
+<<<<<<< HEAD
 fstabgen () { read -p "
 
 Membuat file fstab
@@ -253,6 +259,29 @@ File fstab gagal dibuat, silakan keluar dan buat secara manual ...
         [Nn]*) return
         ;;
     esac
+=======
+genfstab () { read -p "
+
+Apakah anda ingin membuat file fstab ?
+
+[Y/n] : " yn
+	case $yn in
+		[Yy]*) genfstab -U $MY_CHROOT > $DIR/fstab
+		sudo mv $DIR/fstab $MY_CHROOT/etc
+		read -p "
+
+File fstab sudah berhasil dibuat (tekan enter untuk lanjut) ...
+
+" ret
+		case $ret in
+			*) return
+			;;
+		esac
+		;;
+		[Nn]*) return
+		;,
+	esac
+>>>>>>> 473619bd06d62a9639f89a367352838b20f3f0f4
 }
 
 # Install base debian
@@ -333,7 +362,11 @@ MAIN MENU
 
 1. Install Debootstrap.
 2. Install System.
+<<<<<<< HEAD
 3. Membuat File fstab
+=======
+3. Membuat file fstab.
+>>>>>>> 473619bd06d62a9639f89a367352838b20f3f0f4
 4. Mount Semua yang Dibutuhkan.
 5. Post Install.
 q. Keluar
@@ -345,10 +378,17 @@ Masukkan pilihan anda : " pilihan
         ;;
         2) debian-install
         ;;
+<<<<<<< HEAD
         3) fstabgen
         ;;
         4) mount-everything
         ;;
+=======
+	3) genfstab
+	;;
+        4) mount-everything
+        ;;
+>>>>>>> 473619bd06d62a9639f89a367352838b20f3f0f4
         5) post-install
         ;;
         [Qq]*) clear
