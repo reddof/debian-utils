@@ -4,16 +4,16 @@ clear
 
 DIR=$(pwd)
 MY_CHROOT=/mnt
-LS=$(ls -a /mnt | grep debian-utils)
+LS=$(ls -a $MY_CHROOT | grep debian-utils)
 
 if [ "$LS" = "debian-utils" ];
 	then
-        	chmod -x /mnt/debian-utils
+        	chmod -x $MY_CHROOT/debian-utils
 	else
 		sudo chmod +x -R $DIR/*
-		sudo mkdir -p /mnt/debian-utils
-		sudo cp -Rn $DIR/* /mnt/debian-utils
-		sudo cp -Rn $DIR/.* /mnt/debian-utils
+		sudo mkdir -p $MY_CHROOT/debian-utils
+		sudo cp -Rn $DIR/* $MY_CHROOT/debian-utils
+		sudo cp -Rn $DIR/.* $MY_CHROOT/debian-utils
 fi
 
 # Header template
